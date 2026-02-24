@@ -8,52 +8,50 @@ export function PricingSection() {
   const pricingPlans = [
     {
       name: "Старт",
-      monthlyPrice: "0 ₽",
-      annualPrice: "0 ₽",
-      description: "Для начинающих разработчиков.",
+      monthlyPrice: "500 ₽",
+      annualPrice: "500 ₽",
+      description: "Первое пополнение.",
       features: [
-        "Подсказки кода в реальном времени",
-        "Базовые интеграции",
-        "Одно MCP-подключение",
-        "До 2 ИИ-агентов",
-        "Деплой с брендингом NeuralCode",
+        "Пополнение от 500 ₽",
+        "Зачисление в течение 5 минут",
+        "Оплата картой или СБП",
+        "Поддержка в чате",
       ],
-      buttonText: "Начать",
+      buttonText: "Пополнить",
       buttonClass:
         "bg-zinc-300 shadow-[0px_1px_1px_-0.5px_rgba(16,24,40,0.20)] outline outline-0.5 outline-[#1e29391f] outline-offset-[-0.5px] text-gray-800 text-shadow-[0px_1px_1px_rgba(16,24,40,0.08)] hover:bg-zinc-400",
     },
     {
-      name: "Про",
-      monthlyPrice: "1 990 ₽",
-      annualPrice: "1 590 ₽",
-      description: "Для профессионалов.",
+      name: "Оптимальный",
+      monthlyPrice: "2 000 ₽",
+      annualPrice: "2 000 ₽",
+      description: "Самый популярный выбор.",
       features: [
-        "Расширенные превью в реальном времени",
-        "Безлимитные интеграции",
-        "Несколько MCP-подключений",
-        "До 10 ИИ-агентов одновременно",
-        "Командный чат и совместная работа",
-        "Продвинутая интеграция с Git",
-        "Приоритетная поддержка",
+        "Пополнение от 2 000 ₽",
+        "Мгновенное зачисление",
+        "Все способы оплаты",
+        "Бонус +3% к сумме",
+        "Приоритетная поддержка 24/7",
+        "История транзакций",
       ],
-      buttonText: "Подключить",
+      buttonText: "Пополнить",
       buttonClass:
         "bg-primary-foreground shadow-[0px_1px_1px_-0.5px_rgba(16,24,40,0.20)] text-primary text-shadow-[0px_1px_1px_rgba(16,24,40,0.08)] hover:bg-primary-foreground/90",
       popular: true,
     },
     {
-      name: "Бизнес",
-      monthlyPrice: "19 900 ₽",
-      annualPrice: "15 900 ₽",
-      description: "Решения для команд.",
+      name: "Максимум",
+      monthlyPrice: "10 000 ₽",
+      annualPrice: "10 000 ₽",
+      description: "Крупное пополнение.",
       features: [
+        "Пополнение от 10 000 ₽",
+        "Мгновенное зачисление",
+        "Бонус +7% к сумме",
         "Персональный менеджер",
-        "Безлимитные MCP-кластеры",
-        "Безлимитные ИИ-агенты",
-        "Корпоративная безопасность",
-        "Приоритетный деплой и SLA",
+        "Все способы оплаты",
       ],
-      buttonText: "Связаться",
+      buttonText: "Пополнить",
       buttonClass:
         "bg-secondary shadow-[0px_1px_1px_-0.5px_rgba(16,24,40,0.20)] text-secondary-foreground text-shadow-[0px_1px_1px_rgba(16,24,40,0.08)] hover:bg-secondary/90",
     },
@@ -64,10 +62,10 @@ export function PricingSection() {
       <div className="self-stretch relative flex flex-col justify-center items-center gap-2 py-0">
         <div className="flex flex-col justify-start items-center gap-4">
           <h2 className="text-center text-foreground text-4xl md:text-5xl font-semibold leading-tight md:leading-[40px]">
-            Тарифы для каждого
+            Выберите сумму пополнения
           </h2>
           <p className="self-stretch text-center text-muted-foreground text-sm font-medium leading-tight">
-            Выберите план под ваш стиль работы: от начинающих разработчиков <br /> до растущих команд и крупных организаций.
+            Пополняйте на любую сумму — от небольшой до крупной. <br /> Чем больше — тем выгоднее бонус.
           </p>
         </div>
         <div className="pt-4">
@@ -148,7 +146,7 @@ export function PricingSection() {
                     <div
                       className={`text-center text-sm font-medium leading-tight ${plan.popular ? "text-primary-foreground/70" : "text-zinc-400"}`}
                     >
-                      /мес
+                      и выше
                     </div>
                   </div>
                   <div
@@ -174,7 +172,7 @@ export function PricingSection() {
               <div
                 className={`self-stretch text-sm font-medium leading-tight ${plan.popular ? "text-primary-foreground/70" : "text-muted-foreground"}`}
               >
-                {plan.name === "Старт" ? "Начните сегодня:" : "Всё из Старт плюс:"}
+                {plan.name === "Старт" ? "Включено:" : "Всё из предыдущего плюс:"}
               </div>
               <div className="self-stretch flex flex-col justify-start items-start gap-3">
                 {plan.features.map((feature) => (

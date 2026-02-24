@@ -42,33 +42,33 @@ const BentoCard = ({ title, description, Component }: BentoCardProps) => (
 export function BentoSection() {
   const cards = [
     {
-      title: "ИИ-ревью кода.",
-      description: "Умные подсказки для чистого кода в реальном времени.",
+      title: "Мгновенное зачисление.",
+      description: "Средства поступают на Steam-аккаунт в течение 5 минут.",
       Component: AiCodeReviews,
     },
     {
-      title: "Превью в реальном времени",
-      description: "Общайтесь, работайте вместе и сразу видьте изменения.",
+      title: "Без лишних шагов",
+      description: "Только ссылка на профиль и сумма — больше ничего не нужно.",
       Component: RealtimeCodingPreviews,
     },
     {
-      title: "Интеграции в один клик",
-      description: "Легко подключайте любимые инструменты разработки.",
+      title: "Удобная оплата",
+      description: "Карты, СБП, электронные кошельки и криптовалюта.",
       Component: OneClickIntegrationsIllustration,
     },
     {
-      title: "Гибкое MCP-подключение",
-      description: "Простое управление доступом к MCP-серверам.",
+      title: "Надёжная защита",
+      description: "Все транзакции шифруются — ваши данные в безопасности.",
       Component: MCPConnectivityIllustration,
     },
     {
-      title: "Параллельные ИИ-агенты",
-      description: "Решайте сложные задачи быстрее с несколькими агентами.",
+      title: "Поддержка 24/7",
+      description: "Наша команда всегда на связи, если что-то пойдёт не так.",
       Component: ParallelCodingAgents,
     },
     {
-      title: "Простой деплой",
-      description: "От кода до продакшена за считанные минуты.",
+      title: "Выгодный курс",
+      description: "Пополняем по лучшему курсу без скрытых комиссий.",
       Component: EasyDeployment,
     },
   ]
@@ -80,10 +80,10 @@ export function BentoSection() {
         <div className="self-stretch py-8 md:py-14 flex flex-col justify-center items-center gap-2 z-10">
           <div className="flex flex-col justify-start items-center gap-4">
             <h2 className="w-full max-w-[655px] text-center text-foreground text-4xl md:text-6xl font-semibold leading-tight md:leading-[66px]">
-              Усильте рабочий процесс с ИИ
+              Почему выбирают нас
             </h2>
             <p className="w-full max-w-[600px] text-center text-muted-foreground text-lg md:text-xl font-medium leading-relaxed">
-              Попросите ИИ-агента помочь с совместной работой, интеграциями и аналитикой для оптимизации процессов.
+              Максимально простой и надёжный способ пополнить Steam — без лишних шагов и скрытых платежей.
             </p>
           </div>
         </div>

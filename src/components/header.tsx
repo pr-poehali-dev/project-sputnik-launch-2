@@ -5,8 +5,8 @@ import { Menu } from "lucide-react"
 
 export function Header() {
   const navItems = [
-    { name: "Возможности", href: "#features-section" },
-    { name: "Тарифы", href: "#pricing-section" },
+    { name: "Как пополнить", href: "#features-section" },
+    { name: "Суммы", href: "#pricing-section" },
     { name: "Отзывы", href: "#testimonials-section" },
   ]
 
@@ -24,7 +24,7 @@ export function Header() {
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         <div className="flex items-center gap-6">
           <div className="flex items-center gap-3">
-            <span className="text-foreground text-xl font-semibold">NeuralCode</span>
+            <span className="text-foreground text-xl font-semibold">SteamPay</span>
           </div>
           <nav className="hidden md:flex items-center gap-2">
             {navItems.map((item) => (
@@ -42,7 +42,7 @@ export function Header() {
         <div className="flex items-center gap-4">
           <a href="#" className="hidden md:block">
             <Button className="bg-secondary text-secondary-foreground hover:bg-secondary/90 px-6 py-2 rounded-full font-medium shadow-sm">
-              Попробовать
+              Пополнить
             </Button>
           </a>
           <Sheet>
@@ -69,7 +69,7 @@ export function Header() {
                 ))}
                 <a href="#" className="w-full mt-4">
                   <Button className="bg-secondary text-secondary-foreground hover:bg-secondary/90 px-6 py-2 rounded-full font-medium shadow-sm">
-                    Try for Free
+                    Пополнить
                   </Button>
                 </a>
               </nav>
