@@ -1,17 +1,10 @@
-import AiCodeReviews from "./bento/ai-code-reviews"
-import RealtimeCodingPreviews from "./bento/real-time-previews"
-import EasyDeployment from "./bento/easy-deployment"
-import ParallelCodingAgents from "./bento/parallel-agents"
-
 interface BentoCardProps {
   title: string
   description: string
-  Component: React.ComponentType | null
 }
 
-const BentoCard = ({ title, description, Component }: BentoCardProps) => (
+const BentoCard = ({ title, description }: BentoCardProps) => (
   <div className="overflow-hidden rounded-2xl border border-white/20 flex flex-col justify-start items-start relative">
-    {/* Background with blur effect */}
     <div
       className="absolute inset-0 rounded-2xl"
       style={{
@@ -20,9 +13,7 @@ const BentoCard = ({ title, description, Component }: BentoCardProps) => (
         WebkitBackdropFilter: "blur(4px)",
       }}
     />
-    {/* Additional subtle gradient overlay */}
     <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent rounded-2xl" />
-
     <div className="self-stretch p-6 flex flex-col justify-start items-start gap-2 relative z-10">
       <div className="self-stretch flex flex-col justify-start items-start gap-1.5">
         <p className="self-stretch text-foreground text-lg font-normal leading-7">
@@ -31,11 +22,6 @@ const BentoCard = ({ title, description, Component }: BentoCardProps) => (
         </p>
       </div>
     </div>
-    {Component && (
-      <div className="self-stretch h-72 relative -mt-0.5 z-10">
-        <Component />
-      </div>
-    )}
   </div>
 )
 
@@ -44,32 +30,26 @@ export function BentoSection() {
     {
       title: "Мгновенное зачисление.",
       description: "Средства поступают на Steam-аккаунт в течение 5 минут.",
-      Component: AiCodeReviews,
     },
     {
       title: "Без лишних шагов",
       description: "Только ссылка на профиль и сумма — больше ничего не нужно.",
-      Component: RealtimeCodingPreviews,
     },
     {
       title: "Удобная оплата",
       description: "Карты, СБП, электронные кошельки и криптовалюта.",
-      Component: null,
     },
     {
       title: "Надёжная защита",
       description: "Все транзакции шифруются — ваши данные в безопасности.",
-      Component: null,
     },
     {
       title: "Поддержка 24/7",
       description: "Наша команда всегда на связи, если что-то пойдёт не так.",
-      Component: ParallelCodingAgents,
     },
     {
       title: "Выгодный курс",
       description: "Пополняем по лучшему курсу без скрытых комиссий.",
-      Component: EasyDeployment,
     },
   ]
 
