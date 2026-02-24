@@ -9,9 +9,8 @@ import {
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import Icon from "@/components/ui/icon"
-import { useRobokassa, openPaymentPage } from "@/components/extensions/robokassa/useRobokassa"
 
-const ROBOKASSA_URL = "https://functions.poehali.dev/8d90188d-840e-44a1-9052-44906be1147d"
+const TELEGRAM_BOT_URL = "https://t.me/Dotacsgo5566bot"
 
 interface TopupModalProps {
   open: boolean
@@ -23,15 +22,11 @@ const PRESET_AMOUNTS = ["500", "1000", "2000", "5000", "10000"]
 
 export function TopupModal({ open, onOpenChange, defaultAmount }: TopupModalProps) {
   const [steamUrl, setSteamUrl] = useState("")
-  const [email, setEmail] = useState("")
   const [amount, setAmount] = useState(defaultAmount || "")
   const [urlError, setUrlError] = useState("")
-  const [emailError, setEmailError] = useState("")
   const [amountError, setAmountError] = useState("")
 
-  const { createPayment, isLoading } = useRobokassa({ apiUrl: ROBOKASSA_URL })
-
-  const validateAndSubmit = async () => {
+  const validateAndSubmit = () => {
     let valid = true
 
     if (!steamUrl.trim()) {
@@ -39,13 +34,6 @@ export function TopupModal({ open, onOpenChange, defaultAmount }: TopupModalProp
       valid = false
     } else {
       setUrlError("")
-    }
-
-    if (!email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      setEmailError("Введите корректный email для чека")
-      valid = false
-    } else {
-      setEmailError("")
     }
 
     const numAmount = Number(amount)
@@ -64,35 +52,15 @@ export function TopupModal({ open, onOpenChange, defaultAmount }: TopupModalProp
 
     if (!valid) return
 
-    const data = await createPayment({
-      amount: numAmount,
-      userName: "Steam User",
-      userEmail: email,
-      userPhone: "+70000000000",
-      orderComment: `Пополнение Steam: ${steamUrl}`,
-      cartItems: [
-        {
-          id: "steam-topup",
-          name: `Пополнение Steam (${steamUrl})`,
-          price: numAmount,
-          quantity: 1,
-        },
-      ],
-      successUrl: window.location.href,
-      failUrl: window.location.href,
-    })
-
-    openPaymentPage(data.payment_url)
+    window.open(TELEGRAM_BOT_URL, "_blank")
   }
 
   const handleClose = (open: boolean) => {
     if (!open) {
       setTimeout(() => {
         setSteamUrl("")
-        setEmail("")
         setAmount(defaultAmount || "")
         setUrlError("")
-        setEmailError("")
         setAmountError("")
       }, 300)
     }
@@ -143,23 +111,6 @@ export function TopupModal({ open, onOpenChange, defaultAmount }: TopupModalProp
             </div>
 
             <div className="flex flex-col gap-2">
-              <label className="text-sm font-medium text-foreground">Email для чека</label>
-              <Input
-                type="email"
-                placeholder="your@email.com"
-                value={email}
-                onChange={(e) => { setEmail(e.target.value); setEmailError("") }}
-                className="bg-muted/30 border-border text-foreground placeholder:text-muted-foreground"
-              />
-              {emailError && (
-                <p className="text-xs text-red-400 flex items-center gap-1">
-                  <Icon name="AlertCircle" size={12} />
-                  {emailError}
-                </p>
-              )}
-            </div>
-
-            <div className="flex flex-col gap-2">
               <label className="text-sm font-medium text-foreground">Сумма пополнения</label>
               <div className="flex flex-wrap gap-2">
                 {PRESET_AMOUNTS.map((preset) => (
@@ -205,20 +156,10 @@ export function TopupModal({ open, onOpenChange, defaultAmount }: TopupModalProp
 
             <Button
               onClick={validateAndSubmit}
-              disabled={isLoading}
               className="w-full rounded-full bg-secondary text-secondary-foreground hover:bg-secondary/90 font-medium py-3"
             >
-              {isLoading ? (
-                <>
-                  <Icon name="Loader2" size={16} className="mr-2 animate-spin" />
-                  Создаём заказ...
-                </>
-              ) : (
-                <>
-                  Перейти к оплате
-                  <Icon name="ArrowRight" size={16} className="ml-1" />
-                </>
-              )}
+              Перейти к оплате в Telegram
+              <Icon name="ArrowRight" size={16} className="ml-1" />
             </Button>
           </div>
         </div>
