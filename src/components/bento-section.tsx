@@ -1,14 +1,12 @@
 import AiCodeReviews from "./bento/ai-code-reviews"
 import RealtimeCodingPreviews from "./bento/real-time-previews"
-import OneClickIntegrationsIllustration from "./bento/one-click-integrations-illustration"
-import MCPConnectivityIllustration from "./bento/mcp-connectivity-illustration"
 import EasyDeployment from "./bento/easy-deployment"
 import ParallelCodingAgents from "./bento/parallel-agents"
 
 interface BentoCardProps {
   title: string
   description: string
-  Component: React.ComponentType
+  Component: React.ComponentType | null
 }
 
 const BentoCard = ({ title, description, Component }: BentoCardProps) => (
@@ -33,9 +31,11 @@ const BentoCard = ({ title, description, Component }: BentoCardProps) => (
         </p>
       </div>
     </div>
-    <div className="self-stretch h-72 relative -mt-0.5 z-10">
-      <Component />
-    </div>
+    {Component && (
+      <div className="self-stretch h-72 relative -mt-0.5 z-10">
+        <Component />
+      </div>
+    )}
   </div>
 )
 
@@ -54,12 +54,12 @@ export function BentoSection() {
     {
       title: "Удобная оплата",
       description: "Карты, СБП, электронные кошельки и криптовалюта.",
-      Component: OneClickIntegrationsIllustration,
+      Component: null,
     },
     {
       title: "Надёжная защита",
       description: "Все транзакции шифруются — ваши данные в безопасности.",
-      Component: MCPConnectivityIllustration,
+      Component: null,
     },
     {
       title: "Поддержка 24/7",
