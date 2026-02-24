@@ -11,14 +11,12 @@ export function LargeTestimonial() {
                 }
               </div>
               <div className="flex justify-start items-center gap-5">
-                <img
-                  src="/images/guillermo-rauch.png"
-                  alt="Алексей Иванов"
-                  width={48}
-                  height={48}
-                  className="w-12 h-12 relative rounded-full"
+                <div
+                  className="w-12 h-12 rounded-full bg-primary/20 text-primary flex items-center justify-center font-semibold text-base flex-shrink-0"
                   style={{ border: "1px solid rgba(0, 0, 0, 0.08)" }}
-                />
+                >
+                  НВ
+                </div>
                 <div className="flex flex-col justify-start items-start">
                   <div className="text-foreground text-base font-medium leading-6">Никита Воронов</div>
                   <div className="text-muted-foreground text-sm font-normal leading-6">{"Геймер, Москва"}</div>

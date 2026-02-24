@@ -7,12 +7,12 @@ interface McpConnectivityIllustrationProps {
 
 const McpConnectivityIllustration: React.FC<McpConnectivityIllustrationProps> = ({ className = "" }) => {
   const integrations = [
-    { name: "Figma", icon: "/images/mcp-integrations/figma.svg", installed: true },
-    { name: "Shadcn UI", icon: "/images/mcp-integrations/shadcn.svg" },
-    { name: "Next.js", icon: "/images/mcp-integrations/nextjs.svg", installed: true },
-    { name: "Tailwind CSS", icon: "/images/mcp-integrations/tailwind-css.svg" },
-    { name: "Resend", icon: "/images/mcp-integrations/resend.svg", installed: true },
-    { name: "React", icon: "/images/mcp-integrations/react.svg" },
+    { name: "Figma", abbr: "Fi", installed: true },
+    { name: "Shadcn UI", abbr: "Sh" },
+    { name: "Next.js", abbr: "Nx", installed: true },
+    { name: "Tailwind CSS", abbr: "Tw" },
+    { name: "Resend", abbr: "Rs", installed: true },
+    { name: "React", abbr: "Re" },
   ]
 
   return (
@@ -105,18 +105,18 @@ const McpConnectivityIllustration: React.FC<McpConnectivityIllustrationProps> = 
                   style={{
                     width: "24px",
                     height: "24px",
-                    position: "relative",
+                    borderRadius: "6px",
+                    background: "hsl(var(--muted))",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
                     flexShrink: 0,
+                    fontSize: "9px",
+                    fontWeight: 600,
+                    color: "hsl(var(--muted-foreground))",
                   }}
                 >
-                  <img
-                    src={integration.icon || "/placeholder.svg"}
-                    alt={integration.name}
-                    className="w-full h-full object-contain opacity-70 grayscale"
-                  />
+                  {integration.abbr}
                 </div>
                 <span
                   style={{

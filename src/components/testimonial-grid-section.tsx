@@ -4,7 +4,6 @@ const testimonials = [
       "Пополнял через разные сервисы — этот самый быстрый. Деньги пришли буквально за 2 минуты. Теперь пользуюсь только SteamPay.",
     name: "Анна Петрова",
     company: "Геймер, Санкт-Петербург",
-    avatar: "/images/avatars/annette-black.png",
     type: "large-teal",
   },
   {
@@ -12,7 +11,6 @@ const testimonials = [
       "Оплатил через СБП — мгновенно, без проблем. Очень удобно, что не нужно вводить данные карты.",
     name: "Елена Смирнова",
     company: "Геймер, Казань",
-    avatar: "/images/avatars/dianne-russell.png",
     type: "small-dark",
   },
   {
@@ -20,7 +18,6 @@ const testimonials = [
       "Купил игру в подарок другу через SteamPay. Всё прошло гладко, друг доволен. Рекомендую!",
     name: "Максим Волков",
     company: "Геймер, Екатеринбург",
-    avatar: "/images/avatars/cameron-williamson.png",
     type: "small-dark",
   },
   {
@@ -28,7 +25,6 @@ const testimonials = [
       "Наконец-то нормальный сервис без огромных комиссий. Пополнил 1000 рублей — пришло ровно 1000 рублей.",
     name: "Дмитрий Козлов",
     company: "Геймер, Новосибирск",
-    avatar: "/images/avatars/robert-fox.png",
     type: "small-dark",
   },
   {
@@ -36,7 +32,6 @@ const testimonials = [
       "Служба поддержки ответила за 5 минут, когда я ошибся с суммой. Помогли всё исправить. Отличный сервис!",
     name: "Ольга Новикова",
     company: "Геймер, Москва",
-    avatar: "/images/avatars/darlene-robertson.png",
     type: "small-dark",
   },
   {
@@ -44,7 +39,6 @@ const testimonials = [
       "Пополняю Steam каждый месяц. SteamPay — единственный сервис, которому доверяю. Быстро, дёшево, надёжно.",
     name: "Игорь Соколов",
     company: "Геймер, Ростов-на-Дону",
-    avatar: "/images/avatars/cody-fisher.png",
     type: "small-dark",
   },
   {
@@ -52,30 +46,35 @@ const testimonials = [
       "Скептически относился к таким сервисам, но попробовал — удивился. Никаких лишних регистраций, просто работает.",
     name: "Мария Фёдорова",
     company: "Геймер, Воронеж",
-    avatar: "/images/avatars/albert-flores.png",
     type: "large-light",
   },
 ]
+
+function getInitials(name: string) {
+  return name
+    .split(" ")
+    .map((n) => n[0])
+    .join("")
+    .toUpperCase()
+    .slice(0, 2)
+}
 
 interface TestimonialCardProps {
   quote: string
   name: string
   company: string
-  avatar: string
   type: string
 }
 
-const TestimonialCard = ({ quote, name, company, avatar, type }: TestimonialCardProps) => {
+const TestimonialCard = ({ quote, name, company, type }: TestimonialCardProps) => {
   const isLargeCard = type.startsWith("large")
   const avatarSize = isLargeCard ? 48 : 36
-  const avatarBorderRadius = isLargeCard ? "rounded-[41px]" : "rounded-[30.75px]"
   const padding = isLargeCard ? "p-6" : "p-[30px]"
 
   let cardClasses = `flex flex-col justify-between items-start overflow-hidden rounded-[10px] shadow-[0px_2px_4px_rgba(0,0,0,0.08)] relative ${padding}`
   let quoteClasses = ""
   let nameClasses = ""
   let companyClasses = ""
-  let backgroundElements = null
   let cardHeight = ""
   const cardWidth = "w-full md:w-[384px]"
 
@@ -85,24 +84,12 @@ const TestimonialCard = ({ quote, name, company, avatar, type }: TestimonialCard
     nameClasses += " text-primary-foreground text-base font-normal leading-6"
     companyClasses += " text-primary-foreground/60 text-base font-normal leading-6"
     cardHeight = "h-[502px]"
-    backgroundElements = (
-      <div
-        className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: "url('/images/large-card-background.svg')", zIndex: 0 }}
-      />
-    )
   } else if (type === "large-light") {
     cardClasses += " bg-[rgba(231,236,235,0.12)]"
     quoteClasses += " text-foreground text-2xl font-medium leading-8"
     nameClasses += " text-foreground text-base font-normal leading-6"
     companyClasses += " text-muted-foreground text-base font-normal leading-6"
     cardHeight = "h-[502px]"
-    backgroundElements = (
-      <div
-        className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat opacity-20"
-        style={{ backgroundImage: "url('/images/large-card-background.svg')", zIndex: 0 }}
-      />
-    )
   } else {
     cardClasses += " bg-card outline outline-1 outline-border outline-offset-[-1px]"
     quoteClasses += " text-foreground/80 text-[17px] font-normal leading-6"
@@ -111,19 +98,19 @@ const TestimonialCard = ({ quote, name, company, avatar, type }: TestimonialCard
     cardHeight = "h-[244px]"
   }
 
+  const isTeal = type === "large-teal"
+  const avatarBg = isTeal ? "bg-white/20 text-white" : "bg-primary/20 text-primary"
+
   return (
     <div className={`${cardClasses} ${cardWidth} ${cardHeight}`}>
-      {backgroundElements}
       <div className={`relative z-10 font-normal break-words ${quoteClasses}`}>{quote}</div>
       <div className="relative z-10 flex justify-start items-center gap-3">
-        <img
-          src={avatar || "/placeholder.svg"}
-          alt={`${name} avatar`}
-          width={avatarSize}
-          height={avatarSize}
-          className={`w-${avatarSize / 4} h-${avatarSize / 4} ${avatarBorderRadius}`}
-          style={{ border: "1px solid rgba(255, 255, 255, 0.08)" }}
-        />
+        <div
+          className={`flex items-center justify-center rounded-full font-semibold ${avatarBg}`}
+          style={{ width: avatarSize, height: avatarSize, fontSize: avatarSize * 0.38 }}
+        >
+          {getInitials(name)}
+        </div>
         <div className="flex flex-col justify-start items-start gap-0.5">
           <div className={nameClasses}>{name}</div>
           <div className={companyClasses}>{company}</div>
