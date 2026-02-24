@@ -1,6 +1,8 @@
 import { Button } from "@/components/ui/button"
+import { useTopup } from "./topup-context"
 
 export function CTASection() {
+  const { openTopup } = useTopup()
   return (
     <section className="w-full pt-20 md:pt-60 lg:pt-60 pb-10 md:pb-20 px-5 relative flex flex-col justify-center items-center overflow-visible">
       <div className="absolute inset-0 top-[-90px]">
@@ -109,14 +111,13 @@ export function CTASection() {
             Тысячи игроков уже выбрали SteamPay — быстро, выгодно и без лишних шагов. Присоединяйся!
           </p>
         </div>
-        <a href="#">
-          <Button
-            className="px-[30px] py-2 bg-secondary text-secondary-foreground text-base font-medium leading-6 rounded-[99px] shadow-[0px_0px_0px_4px_rgba(255,255,255,0.13)] hover:bg-secondary/90 transition-all duration-200"
-            size="lg"
-          >
-            Пополнить Steam
-          </Button>
-        </a>
+        <Button
+          onClick={() => openTopup()}
+          className="px-[30px] py-2 bg-secondary text-secondary-foreground text-base font-medium leading-6 rounded-[99px] shadow-[0px_0px_0px_4px_rgba(255,255,255,0.13)] hover:bg-secondary/90 transition-all duration-200"
+          size="lg"
+        >
+          Пополнить Steam
+        </Button>
       </div>
     </section>
   )

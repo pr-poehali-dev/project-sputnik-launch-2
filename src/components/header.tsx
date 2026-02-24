@@ -2,8 +2,10 @@ import type React from "react"
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
 import { Menu } from "lucide-react"
+import { useTopup } from "./topup-context"
 
 export function Header() {
+  const { openTopup } = useTopup()
   const navItems = [
     { name: "Как пополнить", href: "#features-section" },
     { name: "Суммы", href: "#pricing-section" },
@@ -40,11 +42,12 @@ export function Header() {
           </nav>
         </div>
         <div className="flex items-center gap-4">
-          <a href="#" className="hidden md:block">
-            <Button className="bg-secondary text-secondary-foreground hover:bg-secondary/90 px-6 py-2 rounded-full font-medium shadow-sm">
-              Пополнить
-            </Button>
-          </a>
+          <Button
+            onClick={() => openTopup()}
+            className="hidden md:block bg-secondary text-secondary-foreground hover:bg-secondary/90 px-6 py-2 rounded-full font-medium shadow-sm"
+          >
+            Пополнить
+          </Button>
           <Sheet>
             <SheetTrigger asChild className="md:hidden">
               <Button variant="ghost" size="icon" className="text-foreground">
@@ -67,11 +70,12 @@ export function Header() {
                     {item.name}
                   </a>
                 ))}
-                <a href="#" className="w-full mt-4">
-                  <Button className="bg-secondary text-secondary-foreground hover:bg-secondary/90 px-6 py-2 rounded-full font-medium shadow-sm">
-                    Пополнить
-                  </Button>
-                </a>
+                <Button
+                  onClick={() => openTopup()}
+                  className="w-full mt-4 bg-secondary text-secondary-foreground hover:bg-secondary/90 px-6 py-2 rounded-full font-medium shadow-sm"
+                >
+                  Пополнить
+                </Button>
               </nav>
             </SheetContent>
           </Sheet>

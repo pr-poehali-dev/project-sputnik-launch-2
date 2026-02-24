@@ -1,8 +1,10 @@
 import React from "react"
 import { Button } from "@/components/ui/button"
 import { Header } from "./header"
+import { useTopup } from "./topup-context"
 
 export function HeroSection() {
+  const { openTopup } = useTopup()
   return (
     <section
       className="flex flex-col items-center text-center relative mx-auto rounded-2xl overflow-hidden my-6 py-0 px-4
@@ -445,11 +447,12 @@ export function HeroSection() {
         </p>
       </div>
 
-      <a href="#">
-        <Button className="relative z-10 bg-secondary text-secondary-foreground hover:bg-secondary/90 px-8 py-3 rounded-full font-medium text-base shadow-lg ring-1 ring-white/10">
-          Пополнить сейчас
-        </Button>
-      </a>
+      <Button
+        onClick={() => openTopup()}
+        className="relative z-10 bg-secondary text-secondary-foreground hover:bg-secondary/90 px-8 py-3 rounded-full font-medium text-base shadow-lg ring-1 ring-white/10"
+      >
+        Пополнить сейчас
+      </Button>
     </section>
   )
 }

@@ -9,9 +9,11 @@ import { FAQSection } from "@/components/faq-section"
 import { CTASection } from "@/components/cta-section"
 import { FooterSection } from "@/components/footer-section"
 import { AnimatedSection } from "@/components/animated-section"
+import { TopupProvider } from "@/components/topup-context"
 
 const Index = () => {
   return (
+    <TopupProvider>
     <div className="min-h-screen bg-background relative overflow-hidden pb-0">
       <div className="relative z-10">
         <main className="max-w-[1320px] mx-auto relative">
@@ -57,6 +59,7 @@ const Index = () => {
         </AnimatedSection>
       </div>
     </div>
+    </TopupProvider>
   )
 }
 

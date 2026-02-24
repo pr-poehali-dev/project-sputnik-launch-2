@@ -1,9 +1,11 @@
 import { useState } from "react"
 import { Check } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { useTopup } from "./topup-context"
 
 export function PricingSection() {
   const [isAnnual, setIsAnnual] = useState(true)
+  const { openTopup } = useTopup()
 
   const pricingPlans = [
     {
@@ -157,11 +159,12 @@ export function PricingSection() {
                 </div>
               </div>
               <Button
+                onClick={() => openTopup(plan.monthlyPrice.replace(/\s?₽/, ""))}
                 className={`self-stretch px-5 py-2 rounded-[40px] flex justify-center items-center ${plan.buttonClass}`}
               >
                 <div className="px-1.5 flex justify-center items-center gap-2">
                   <span
-                    className={`text-center text-sm font-medium leading-tight ${plan.name === "Старт" ? "text-gray-800" : plan.name === "Про" ? "text-primary" : "text-zinc-950"}`}
+                    className={`text-center text-sm font-medium leading-tight ${plan.name === "Старт" ? "text-gray-800" : plan.name === "Оптимальный" ? "text-primary" : "text-zinc-950"}`}
                   >
                     {plan.buttonText}
                   </span>
